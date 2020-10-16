@@ -29,6 +29,7 @@
 		<jaxb-core.version>2.3.0.1</jaxb-core.version>
 		<jaxb-impl.version>2.4.0-b180830.0438</jaxb-impl.version>
 		<jaxb-api.version>2.4.0-b180830.0359</jaxb-api.version>
+		<flyway-core.version>7.0.3</flyway-core.version>
 		<postgresql.version>42.2.4</postgresql.version>
 		<hikari.version>3.3.1</hikari.version>
 		<jackson-datatype-hibernate5.version>2.10.0</jackson-datatype-hibernate5.version>
@@ -151,6 +152,31 @@
 			</resource>
 		</resources>
 		<plugins>
+			<plugin>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>migrate</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<driver>org.postgresql.Driver</driver>
+					<url>jdbc:postgresql://localhost:5432/votacao</url>
+					<user>postgres</user>
+					<password>post</password>
+					<baselineOnMigrate>true</baselineOnMigrate>
+					<schemas>public</schemas>
+					<locations>
+						<location>
+							filesystem:src/main/resources/db/migration
+						</location>
+					</locations>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
