@@ -18,8 +18,8 @@ create table votacao (
     status character varying(32)
 );
 
-create table votacao_associado (
-    id_votacao integer constraint fk_votacao_associado_votacao references votacao (id),
-    id_associado integer constraint fk_votacao_associado_pauta references pauta (id),
+create table voto_associado (
+    id_votacao integer constraint fk_voto_associado_votacao references votacao (id),
+    id_associado integer constraint fk_voto_associado_pauta references pauta (id),
     voto char(3)
 );

@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Embeddable
-public class VotacaoAssociadoId implements Serializable {
+public class VotoAssociadoId implements Serializable {
 
     @OneToOne
     @JoinColumn(name = "id_votacao")
@@ -33,12 +33,12 @@ public class VotacaoAssociadoId implements Serializable {
         this.associado = associado;
     }
 
-    public VotacaoAssociadoId votacao(Votacao votacao) {
+    public VotoAssociadoId votacao(Votacao votacao) {
         this.votacao = votacao;
         return this;
     }
 
-    public VotacaoAssociadoId associado(Associado associado) {
+    public VotoAssociadoId associado(Associado associado) {
         this.associado = associado;
         return this;
     }
@@ -47,7 +47,7 @@ public class VotacaoAssociadoId implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        VotacaoAssociadoId that = (VotacaoAssociadoId) o;
+        VotoAssociadoId that = (VotoAssociadoId) o;
         return Objects.equals(votacao, that.votacao) &&
                 Objects.equals(associado, that.associado);
     }
@@ -59,7 +59,7 @@ public class VotacaoAssociadoId implements Serializable {
 
     @Override
     public String toString() {
-        return "VotacaoAssociadoId{" +
+        return "VotoAssociadoId{" +
                 "votacao=" + votacao +
                 ", associado=" + associado +
                 '}';

@@ -6,5 +6,7 @@ import java.util.List;
 
 public interface AssociadoService {
 
+    Associado consultarPorCpf(String cpf);
+
     List<Associado> consultarTodos();
 }

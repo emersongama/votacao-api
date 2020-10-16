@@ -9,6 +9,8 @@ public interface Constantes {
         String MSG_VOTACAO_NAO_ENCONTRADA = "Votação não encontrada.";
         String MSG_VOTACAO_ENCERRADA = "A votação já foi encerrada.";
         String MSG_VOTACAO_EM_ANDAMENTO = "A votação já está em andamento.";
+        String MSG_ASSOCIADO_NAO_ENCONTRADO = "Associado não encontrado.";
+        String MSG_ASSOCIADO_JA_VOTOU = "O associado de cpf %s já votou.";
     }
 
     interface Profile {

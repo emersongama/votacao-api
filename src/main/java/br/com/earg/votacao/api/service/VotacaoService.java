@@ -1,7 +1,7 @@
 package br.com.earg.votacao.api.service;
 
 import br.com.earg.votacao.api.domain.Votacao;
-import br.com.earg.votacao.api.domain.VotacaoAssociado;
+import br.com.earg.votacao.api.domain.VotoAssociado;
 
 public interface VotacaoService {
 
@@ -9,5 +9,5 @@ public interface VotacaoService {
 
     Votacao consultarPorId(Long id);
 
-    Votacao realizarVotacao(VotacaoAssociado votacaoAssociado);
+    Votacao votar(VotoAssociado votoAssociado);
 }

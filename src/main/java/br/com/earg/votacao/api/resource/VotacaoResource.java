@@ -3,7 +3,7 @@ package br.com.earg.votacao.api.resource;
 import br.com.earg.votacao.api.domain.Votacao;
 import br.com.earg.votacao.api.service.VotacaoService;
 import br.com.earg.votacao.api.shared.dto.AndamentoVotacaoDTO;
-import br.com.earg.votacao.api.shared.dto.VotacaoAssociadoDTO;
+import br.com.earg.votacao.api.shared.dto.VotoAssociadoDTO;
 import br.com.earg.votacao.api.shared.dto.VotacaoDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,9 +35,9 @@ public class VotacaoResource {
     }
 
     @PostMapping("/votar")
-    public ResponseEntity<AndamentoVotacaoDTO> realizarVotacao(@Valid @RequestBody VotacaoAssociadoDTO votacaoAssociadoDTO) throws URISyntaxException {
-        LOGGER.debug("Requisição REST para realizar uma votação: {}", votacaoAssociadoDTO);
-        Votacao votacao = votacaoService.realizarVotacao(votacaoAssociadoDTO.obterVotacaoAssociado());
+    public ResponseEntity<AndamentoVotacaoDTO> votar(@Valid @RequestBody VotoAssociadoDTO votoAssociadoDTO) throws URISyntaxException {
+        LOGGER.debug("Requisição REST para realizar uma votação: {}", votoAssociadoDTO);
+        Votacao votacao = votacaoService.votar(votoAssociadoDTO.obterVotacaoAssociado());
         return ResponseEntity.created(new URI("/api/votacao/" + votacao.getId()))
                 .body(AndamentoVotacaoDTO.obterDTO(votacao));
     }

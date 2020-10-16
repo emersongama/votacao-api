@@ -7,20 +7,21 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table(name = "votacao_associado")
-public class VotacaoAssociado implements Serializable {
+@Table(name = "voto_associado")
+public class VotoAssociado implements Serializable {
 
     @EmbeddedId
-    private VotacaoAssociadoId id;
+    private VotoAssociadoId id;
 
     @Column
+    @Enumerated(EnumType.STRING)
     private IndicadorSimNao voto;
 
-    public VotacaoAssociadoId getId() {
+    public VotoAssociadoId getId() {
         return id;
     }
 
-    public void setId(VotacaoAssociadoId id) {
+    public void setId(VotoAssociadoId id) {
         this.id = id;
     }
 
@@ -32,12 +33,12 @@ public class VotacaoAssociado implements Serializable {
         this.voto = voto;
     }
 
-    public VotacaoAssociado id(VotacaoAssociadoId id) {
+    public VotoAssociado id(VotoAssociadoId id) {
         this.id = id;
         return this;
     }
 
-    public VotacaoAssociado voto(IndicadorSimNao voto) {
+    public VotoAssociado voto(IndicadorSimNao voto) {
         this.voto = voto;
         return this;
     }
@@ -46,7 +47,7 @@ public class VotacaoAssociado implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        VotacaoAssociado that = (VotacaoAssociado) o;
+        VotoAssociado that = (VotoAssociado) o;
         return Objects.equals(id, that.id) &&
                 Objects.equals(voto, that.voto);
     }
@@ -58,7 +59,7 @@ public class VotacaoAssociado implements Serializable {
 
     @Override
     public String toString() {
-        return "VotacaoAssociado{" +
+        return "VotoAssociado{" +
                 "id=" + id +
                 ", voto='" + voto + '\'' +
                 '}';
