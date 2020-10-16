@@ -43,6 +43,21 @@ public class Associado implements Serializable {
         this.cpf = cpf;
     }
 
+    public Associado id(Long id) {
+        this.id = id;
+        return this;
+    }
+
+    public Associado nome(String nome) {
+        this.nome = nome;
+        return this;
+    }
+
+    public Associado cpf(String cpf) {
+        this.cpf = cpf;
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

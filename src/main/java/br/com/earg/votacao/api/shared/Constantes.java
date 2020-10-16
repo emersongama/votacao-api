@@ -2,6 +2,15 @@ package br.com.earg.votacao.api.shared;
 
 public interface Constantes {
 
+    Integer UM_MINUTO = 1;
+
+    interface Mensagem {
+        String MSG_PAUTA_NAO_ENCONTRADA = "Pauta não encontrada.";
+        String MSG_VOTACAO_NAO_ENCONTRADA = "Votação não encontrada.";
+        String MSG_VOTACAO_ENCERRADA = "A votação já foi encerrada.";
+        String MSG_VOTACAO_EM_ANDAMENTO = "A votação já está em andamento.";
+    }
+
     interface Profile {
         String DEV = "dev";
         String SWAGGER = "swagger";

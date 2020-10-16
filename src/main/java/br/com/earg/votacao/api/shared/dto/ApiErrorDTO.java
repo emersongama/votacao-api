@@ -38,24 +38,12 @@ public class ApiErrorDTO implements Serializable {
         return campo;
     }
 
-    public void setCampo(String campo) {
-        this.campo = campo;
-    }
-
     public String getMensagem() {
         return mensagem;
     }
 
-    public void setMensagem(String mensagem) {
-        this.mensagem = mensagem;
-    }
-
     public String getStacktrace() {
         return stacktrace;
-    }
-
-    public void setStacktrace(String stacktrace) {
-        this.stacktrace = stacktrace;
     }
 
     @Override

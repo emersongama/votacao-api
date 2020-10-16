@@ -1,9 +1,3 @@
-create table assemblea (
-    id serial constraint pk_assemblea primary key,
-    descricao character varying(255),
-    data_hora timestamp
-);
-
 create table associado (
     id serial constraint pk_associado primary key,
     nome character varying(128),
@@ -12,8 +6,8 @@ create table associado (
 
 create table pauta (
     id serial constraint pk_pauta primary key,
-    descricao character varying(255),
-    id_assemblea integer constraint fk_pauta_assemblea references assemblea (id)
+    descricao text,
+    status character varying(32)
 );
 
 create table votacao (

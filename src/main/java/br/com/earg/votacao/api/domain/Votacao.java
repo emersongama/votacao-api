@@ -1,6 +1,7 @@
 package br.com.earg.votacao.api.domain;
 
 import br.com.earg.votacao.api.shared.enums.StatusVotacao;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -23,7 +24,8 @@ public class Votacao implements Serializable {
     @Column
     private Integer duracao;
 
-    @Column(name = "data_hora_inicio")
+    @CreationTimestamp
+    @Column(name = "data_hora_inicio", updatable = false)
     private LocalDateTime dataHoraInicio;
 
     @Column
@@ -68,6 +70,31 @@ public class Votacao implements Serializable {
 
     public void setStatus(StatusVotacao status) {
         this.status = status;
+    }
+
+    public Votacao id(Long id) {
+        this.id = id;
+        return this;
+    }
+
+    public Votacao pauta(Pauta pauta) {
+        this.pauta = pauta;
+        return this;
+    }
+
+    public Votacao duracao(Integer duracao) {
+        this.duracao = duracao;
+        return this;
+    }
+
+    public Votacao dataHoraInicio(LocalDateTime dataHoraInicio) {
+        this.dataHoraInicio = dataHoraInicio;
+        return this;
+    }
+
+    public Votacao status(StatusVotacao status) {
+        this.status = status;
+        return this;
     }
 
     @Override
