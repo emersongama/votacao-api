@@ -8,9 +8,12 @@ import br.com.earg.votacao.api.repository.VotacaoRepository;
 import br.com.earg.votacao.api.repository.VotoAssociadoRepository;
 import br.com.earg.votacao.api.service.AssociadoService;
 import br.com.earg.votacao.api.service.VotacaoService;
+import br.com.earg.votacao.api.service.client.ConsultaAssociadoClient;
 import br.com.earg.votacao.api.service.exception.NaoEncontradoException;
 import br.com.earg.votacao.api.service.exception.NegocioException;
+import br.com.earg.votacao.api.shared.dto.InformacaoAssociadoDTO;
 import br.com.earg.votacao.api.shared.enums.IndicadorSimNao;
+import br.com.earg.votacao.api.shared.enums.StatusAssociado;
 import br.com.earg.votacao.api.shared.enums.StatusVotacao;
 import org.springframework.stereotype.Service;
 
@@ -24,13 +27,16 @@ public class VotacaoServiceImpl implements VotacaoService {
     private final VotacaoRepository votacaoRepository;
     private final VotoAssociadoRepository votoAssociadoRepository;
     private final AssociadoService associadoService;
+    private final ConsultaAssociadoClient consultaAssociadoClient;
 
     public VotacaoServiceImpl(VotacaoRepository votacaoRepository,
                               VotoAssociadoRepository votoAssociadoRepository,
-                              AssociadoService associadoService) {
+                              AssociadoService associadoService,
+                              ConsultaAssociadoClient consultaAssociadoClient) {
         this.votacaoRepository = votacaoRepository;
         this.votoAssociadoRepository = votoAssociadoRepository;
         this.associadoService = associadoService;
+        this.consultaAssociadoClient = consultaAssociadoClient;
     }
 
     @Override
@@ -106,7 +112,10 @@ public class VotacaoServiceImpl implements VotacaoService {
     }
 
     private void validarSeAssociadoEstaAptoAhVotar(VotoAssociado votoAssociado) {
-        //TODO: tarefa bônus 1
+        InformacaoAssociadoDTO informacaoAssociadoDTO = consultaAssociadoClient.obterInformacoesAssociado(votoAssociado.getId().getAssociado().getCpf());
+        if (StatusAssociado.UNABLE_TO_VOTE.equals(informacaoAssociadoDTO.getStatus())) {
+            throw new NegocioException(MSG_ASSOCIADO_NAO_ESTA_APTO_PARA_VOTAR);
+        }
     }
 
     private void validarSeAssociadoJaVotou(VotoAssociado votoAssociado) {
