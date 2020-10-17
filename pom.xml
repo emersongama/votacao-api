@@ -245,12 +245,6 @@
 			<properties>
 				<spring.profiles.active>dev${profile.swagger}</spring.profiles.active>
 			</properties>
-		</profile>
-		<profile>
-			<id>prod</id>
-			<properties>
-				<spring.profiles.active>prod</spring.profiles.active>
-			</properties>
 			<build>
 				<plugins>
 					<plugin>
@@ -266,9 +260,9 @@
 						</executions>
 						<configuration>
 							<driver>org.postgresql.Driver</driver>
-							<url>${env.SPRING_DATASOURCE_URL}</url>
-							<user>${env.SPRING_DATASOURCE_USERNAME}</user>
-							<password>${env.SPRING_DATASOURCE_PASSWORD}</password>
+							<url>jdbc:postgresql://localhost:5432/votacao</url>
+							<user>postgres</user>
+							<password>post</password>
 							<baselineOnMigrate>true</baselineOnMigrate>
 							<schemas>public</schemas>
 							<locations>
@@ -280,6 +274,12 @@
 					</plugin>
 				</plugins>
 			</build>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<properties>
+				<spring.profiles.active>prod</spring.profiles.active>
+			</properties>
 		</profile>
 	</profiles>
 
