@@ -257,9 +257,9 @@
 						</executions>
 						<configuration>
 							<driver>org.postgresql.Driver</driver>
-							<url>jdbc:postgresql://localhost:5432/votacao</url>
-							<user>postgres</user>
-							<password>post</password>
+							<url>${spring_datasource_url}</url>
+							<user>${spring_datasource_username}</user>
+							<password>${spring_datasource_password}</password>
 							<baselineOnMigrate>true</baselineOnMigrate>
 							<schemas>public</schemas>
 							<locations>
