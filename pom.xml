@@ -238,12 +238,9 @@
 			</properties>
 		</profile>
 		<profile>
-			<id>dev</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
+			<id>flyway</id>
 			<properties>
-				<spring.profiles.active>dev${profile.swagger}</spring.profiles.active>
+				<spring.profiles.active>flyway</spring.profiles.active>
 			</properties>
 			<build>
 				<plugins>
@@ -274,6 +271,15 @@
 					</plugin>
 				</plugins>
 			</build>
+		</profile>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<spring.profiles.active>dev${profile.swagger}</spring.profiles.active>
+			</properties>
 		</profile>
 		<profile>
 			<id>prod</id>
