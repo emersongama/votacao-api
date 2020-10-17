@@ -1,6 +1,11 @@
 # votacao-api
 
-Foobar is a Python library for dealing with word pluralization.
+Api feita com spring boot e java 11.
+
+## Requisitos
+
+- Java 11
+- Maven 3+
 
 ## Ambiente DEV
 
