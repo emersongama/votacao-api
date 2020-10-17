@@ -227,6 +227,16 @@
 					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-maven-plugin</artifactId>
+				<configuration>
+					<driver>org.postgresql.Driver</driver>
+					<url>${spring_datasource_url}</url>
+					<user>${spring_datasource_username}</user>
+					<password>${spring_datasource_password}</password>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
@@ -236,41 +246,6 @@
 			<properties>
 				<profile.swagger>,swagger</profile.swagger>
 			</properties>
-		</profile>
-		<profile>
-			<id>flyway</id>
-			<properties>
-				<spring.profiles.active>flyway</spring.profiles.active>
-			</properties>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.flywaydb</groupId>
-						<artifactId>flyway-maven-plugin</artifactId>
-						<executions>
-							<execution>
-								<phase>generate-sources</phase>
-								<goals>
-									<goal>migrate</goal>
-								</goals>
-							</execution>
-						</executions>
-						<configuration>
-							<driver>org.postgresql.Driver</driver>
-							<url>${spring_datasource_url}</url>
-							<user>${spring_datasource_username}</user>
-							<password>${spring_datasource_password}</password>
-							<baselineOnMigrate>true</baselineOnMigrate>
-							<schemas>public</schemas>
-							<locations>
-								<location>
-									filesystem:src/main/resources/db/migration
-								</location>
-							</locations>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
 		</profile>
 		<profile>
 			<id>dev</id>
