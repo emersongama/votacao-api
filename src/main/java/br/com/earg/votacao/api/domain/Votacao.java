@@ -28,10 +28,6 @@ public class Votacao implements Serializable {
     @Column(name = "data_hora_inicio", updatable = false)
     private LocalDateTime dataHoraInicio;
 
-    @Column
-    @Enumerated(EnumType.STRING)
-    private StatusVotacao status;
-
     public Long getId() {
         return id;
     }
@@ -65,11 +61,7 @@ public class Votacao implements Serializable {
     }
 
     public StatusVotacao getStatus() {
-        return status;
-    }
-
-    public void setStatus(StatusVotacao status) {
-        this.status = status;
+        return dataHoraInicio.plusMinutes(duracao).isBefore(LocalDateTime.now()) ? StatusVotacao.ENCERRADA : StatusVotacao.EM_ANDAMENTO;
     }
 
     public Votacao id(Long id) {
@@ -92,11 +84,6 @@ public class Votacao implements Serializable {
         return this;
     }
 
-    public Votacao status(StatusVotacao status) {
-        this.status = status;
-        return this;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -105,13 +92,12 @@ public class Votacao implements Serializable {
         return Objects.equals(id, votacao.id) &&
                 Objects.equals(pauta, votacao.pauta) &&
                 Objects.equals(duracao, votacao.duracao) &&
-                Objects.equals(dataHoraInicio, votacao.dataHoraInicio) &&
-                status == votacao.status;
+                Objects.equals(dataHoraInicio, votacao.dataHoraInicio);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, pauta, duracao, dataHoraInicio, status);
+        return Objects.hash(id, pauta, duracao, dataHoraInicio);
     }
 
     @Override
@@ -121,7 +107,6 @@ public class Votacao implements Serializable {
                 ", pauta=" + pauta +
                 ", duracao=" + duracao +
                 ", dataHoraInicio=" + dataHoraInicio +
-                ", status=" + status +
                 '}';
     }
 }

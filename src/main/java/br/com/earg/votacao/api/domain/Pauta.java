@@ -1,7 +1,5 @@
 package br.com.earg.votacao.api.domain;
 
-import br.com.earg.votacao.api.shared.enums.StatusPauta;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -17,10 +15,6 @@ public class Pauta implements Serializable {
 
     @Column
     private String descricao;
-
-    @Column
-    @Enumerated(EnumType.STRING)
-    private StatusPauta status;
 
     public Long getId() {
         return id;
@@ -38,14 +32,6 @@ public class Pauta implements Serializable {
         this.descricao = descricao;
     }
 
-    public StatusPauta getStatus() {
-        return status;
-    }
-
-    public void setStatus(StatusPauta status) {
-        this.status = status;
-    }
-
     public Pauta id(Long id) {
         this.id = id;
         return this;
@@ -56,24 +42,18 @@ public class Pauta implements Serializable {
         return this;
     }
 
-    public Pauta status(StatusPauta status) {
-        this.status = status;
-        return this;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Pauta pauta = (Pauta) o;
         return Objects.equals(id, pauta.id) &&
-                Objects.equals(descricao, pauta.descricao) &&
-                Objects.equals(status, pauta.status);
+                Objects.equals(descricao, pauta.descricao);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, descricao, status);
+        return Objects.hash(id, descricao);
     }
 
     @Override
@@ -81,7 +61,6 @@ public class Pauta implements Serializable {
         return "Pauta{" +
                 "id=" + id +
                 ", descricao='" + descricao + '\'' +
-                ", status='" + status + '\'' +
                 '}';
     }
 }

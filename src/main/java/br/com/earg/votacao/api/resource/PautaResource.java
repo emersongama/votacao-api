@@ -39,14 +39,14 @@ public class PautaResource {
     @GetMapping("/{id}")
     public ResponseEntity<PautaDTO> consultarPorId(@PathVariable Long id) {
         LOGGER.debug("Requisição REST para consultar uma pauta por id: {}", id);
-        Pauta pautaConsultada = pautaService.consultarPorId(id);
-        return ResponseEntity.ok(PautaDTO.obterDTO(pautaConsultada));
+        PautaDTO pautaConsultada = pautaService.consultarPorId(id);
+        return ResponseEntity.ok(pautaConsultada);
     }
 
     @GetMapping
     public ResponseEntity<List<PautaDTO>> consultarTodas() {
         LOGGER.debug("Requisição REST para consultar todas as pautas");
-        List<Pauta> pautasConsultadas = pautaService.consultarTodas();
-        return ResponseEntity.ok(PautaDTO.obterListaDTO(pautasConsultadas));
+        List<PautaDTO> pautasConsultadas = pautaService.consultarTodas();
+        return ResponseEntity.ok(pautasConsultadas);
     }
 }

@@ -1,8 +1,9 @@
 package br.com.earg.votacao.api.domain;
 
-import br.com.earg.votacao.api.shared.enums.IndicadorSimNao;
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -14,8 +15,7 @@ public class VotoAssociado implements Serializable {
     private VotoAssociadoId id;
 
     @Column
-    @Enumerated(EnumType.STRING)
-    private IndicadorSimNao voto;
+    private String voto;
 
     public VotoAssociadoId getId() {
         return id;
@@ -25,11 +25,11 @@ public class VotoAssociado implements Serializable {
         this.id = id;
     }
 
-    public IndicadorSimNao getVoto() {
+    public String getVoto() {
         return voto;
     }
 
-    public void setVoto(IndicadorSimNao voto) {
+    public void setVoto(String voto) {
         this.voto = voto;
     }
 
@@ -38,7 +38,7 @@ public class VotoAssociado implements Serializable {
         return this;
     }
 
-    public VotoAssociado voto(IndicadorSimNao voto) {
+    public VotoAssociado voto(String voto) {
         this.voto = voto;
         return this;
     }

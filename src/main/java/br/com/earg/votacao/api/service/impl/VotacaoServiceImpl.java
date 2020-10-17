@@ -4,16 +4,16 @@ import br.com.earg.votacao.api.domain.Associado;
 import br.com.earg.votacao.api.domain.Pauta;
 import br.com.earg.votacao.api.domain.Votacao;
 import br.com.earg.votacao.api.domain.VotoAssociado;
-import br.com.earg.votacao.api.repository.VotoAssociadoRepository;
 import br.com.earg.votacao.api.repository.VotacaoRepository;
+import br.com.earg.votacao.api.repository.VotoAssociadoRepository;
 import br.com.earg.votacao.api.service.AssociadoService;
 import br.com.earg.votacao.api.service.VotacaoService;
 import br.com.earg.votacao.api.service.exception.NaoEncontradoException;
 import br.com.earg.votacao.api.service.exception.NegocioException;
+import br.com.earg.votacao.api.shared.enums.IndicadorSimNao;
 import br.com.earg.votacao.api.shared.enums.StatusVotacao;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 import static br.com.earg.votacao.api.shared.Constantes.Mensagem.*;
@@ -53,10 +53,25 @@ public class VotacaoServiceImpl implements VotacaoService {
                 .orElseThrow(() -> new NaoEncontradoException(MSG_VOTACAO_NAO_ENCONTRADA));
     }
 
+    @Override
+    public Votacao consultarPorPauta(Pauta pauta) {
+        return votacaoRepository.findByPauta(pauta).orElse(null);
+    }
+
+    @Override
+    public Integer consultarTotalVotosFavoraveis(Votacao votacao) {
+        return votoAssociadoRepository.consultarQuantidadeVotos(votacao.getId(), IndicadorSimNao.SIM.name());
+    }
+
+    @Override
+    public Integer consultarTotalVotosContra(Votacao votacao) {
+        return votoAssociadoRepository.consultarQuantidadeVotos(votacao.getId(), IndicadorSimNao.NAO.name());
+    }
+
     private void validarVoto(VotoAssociado votoAssociado) {
+        validarSeVotacaoFoiEncerrada(votoAssociado);
         validarSeAssociadoEstaAptoAhVotar(votoAssociado);
         validarSeAssociadoJaVotou(votoAssociado);
-        validarSeVotacaoFoiEncerrada(votoAssociado);
     }
 
     private void validarSePodeAbrirVotacao(Pauta pauta) {
@@ -72,14 +87,13 @@ public class VotacaoServiceImpl implements VotacaoService {
     }
 
     private void validarSeVotacaoFoiEncerrada(Votacao votacao) {
-        if (StatusVotacao.ENCERRADA.equals(votacao.getStatus())
-                || votacao.getDataHoraInicio().plusMinutes(votacao.getDuracao()).isBefore(LocalDateTime.now())) {
+        if (StatusVotacao.ENCERRADA.equals(votacao.getStatus())) {
             throw new NegocioException(MSG_VOTACAO_ENCERRADA);
         }
     }
 
     private void validarSeVotacaoEstaEmAndamento(Votacao votacao) {
-        if (StatusVotacao.EM_VOTACAO.equals(votacao.getStatus())) {
+        if (StatusVotacao.EM_ANDAMENTO.equals(votacao.getStatus())) {
             throw new NegocioException(MSG_VOTACAO_EM_ANDAMENTO);
         }
     }

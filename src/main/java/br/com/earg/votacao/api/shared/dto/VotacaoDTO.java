@@ -2,7 +2,6 @@ package br.com.earg.votacao.api.shared.dto;
 
 import br.com.earg.votacao.api.domain.Pauta;
 import br.com.earg.votacao.api.domain.Votacao;
-import br.com.earg.votacao.api.shared.enums.StatusVotacao;
 import br.com.earg.votacao.api.util.VerificadorUtil;
 
 import javax.validation.constraints.NotNull;
@@ -39,8 +38,7 @@ public class VotacaoDTO implements Serializable {
     public Votacao obterVotacao() {
         return new Votacao()
                 .pauta(new Pauta().id(idPauta))
-                .duracao(VerificadorUtil.naoEstaNuloOuVazio(duracao) ? duracao : UM_MINUTO)
-                .status(StatusVotacao.EM_VOTACAO);
+                .duracao(VerificadorUtil.naoEstaNuloOuVazio(duracao) ? duracao : UM_MINUTO);
     }
 
     @Override

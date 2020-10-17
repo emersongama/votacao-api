@@ -4,7 +4,6 @@ import br.com.earg.votacao.api.domain.Associado;
 import br.com.earg.votacao.api.domain.Votacao;
 import br.com.earg.votacao.api.domain.VotoAssociado;
 import br.com.earg.votacao.api.domain.VotoAssociadoId;
-import br.com.earg.votacao.api.shared.enums.IndicadorSimNao;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -54,7 +53,7 @@ public class VotoAssociadoDTO implements Serializable {
                 .id(new VotoAssociadoId()
                         .votacao(new Votacao().id(idVotacao))
                         .associado(new Associado().cpf(cpfAssociado)))
-                .voto(IndicadorSimNao.valueOf(voto.toUpperCase()));
+                .voto(voto.toUpperCase());
     }
 
     @Override
