@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>br.com.earg</groupId>
 	<artifactId>votacao-api</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0-202010171253</version>
 	<name>votacao-api</name>
 	<description>Demo project for Spring Boot</description>
 
