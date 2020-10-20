@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  postgres-votacao-api:
+    image: postgres:13
+    restart: always
+    environment:
+      TZ: America/Sao_Paulo
+      POSTGRES_DB: votacao
+      POSTGRES_PASSWORD: post
+    ports:
+      - 9090:5432
+    networks:
+      - api-network
+  votacao-api:
+    image: emersongama5/votacao-api:1.0.2-202010201317
+    restart: always
+    environment:
+      TZ: America/Sao_Paulo
+      SPRING_PROFILES_ACTIVE: prod,swagger
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-votacao-api/votacao
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: post
+    ports:
+      - 8081:8081
+    networks:
+      - api-network
+    links:
+      - postgres-votacao-api
+    depends_on:
+      - postgres-votacao-api
+networks:
+  api-network:
+    driver: bridge
