@@ -5,6 +5,10 @@ Api feita com spring boot e java 11.
 - Disponível em: https://earg-votacao-api.herokuapp.com
 - Swagger: https://earg-votacao-api.herokuapp.com/swagger-ui.html
 - Github: https://github.com/emersongama/votacao-api
+## Requisitos
+
+- Java 11
+- Maven 3+
 
 ## Executar API com o Docker
 
