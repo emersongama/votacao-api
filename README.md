@@ -20,3 +20,4 @@ cd votacao-api\src\main\docker
 ```bash
 docker-compose up -d
 ```
+- A api ficará disponível em: http://localhost:8081 e o banco em http://localhost:9090.
