@@ -12,7 +12,7 @@ services:
     networks:
       - api-network
   votacao-api:
-    image: emersongama5/votacao-api:1.0.2-202010201317
+    image: emersongama5/votacao-api:1.0.4-202010201540
     restart: always
     environment:
       TZ: America/Sao_Paulo
