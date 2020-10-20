@@ -1,4 +1,4 @@
-# votacao-api
+# VOTACAO-API
 
 Api feita com spring boot e java 11.
 
@@ -6,22 +6,17 @@ Api feita com spring boot e java 11.
 - Swagger: https://earg-votacao-api.herokuapp.com/swagger-ui.html
 - Github: https://github.com/emersongama/votacao-api
 
-## Requisitos
+## Executar API com o Docker
 
-- Java 11
-- Maven 3+
-
-## Ambiente DEV
-
-- Crie uma database no **banco postgresql** com o nome **votacao** 
-- Execute o comando de migration do flyway no terminal, para criar as tabelas e inserir os dados iniciais no banco, lembrando de alterar as credenciais de conexão:
+- Certifique-se de que sua máquina possui o docker instalado, caso não possua, ele pode ser baixado no seguinte endereço: https://www.docker.com/get-started;
+- Utilizando o terminal, navegue para diretório contendo o arquivo docker-compose.yml:
 
 ```bash
-mvn -Dspring_datasource_url=jdbc:postgresql://localhost:5432/votacao -Dspring_datasource_username=postgres -Dspring_datasource_password=post flyway:migrate
+cd votacao-api\src\main\docker
 ```
-- Verifique as credenciais de conexão com o banco no arquivo application-dev.properties, e modifique-as caso necessário
-- Execute a API:
+
+- Execute o compose para montar a stack no docker:
 
 ```bash
-mvn -Dspring.profiles.active=dev spring-boot:run
+docker-compose up -d
 ```
